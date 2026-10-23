@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qazi Rent a Car | Reliable & Affordable Car Rentals in Pakistan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emeraldCustom: '#005830',
+                        emeraldDark: '#003e21',
+                        goldCustom: '#d4af37',
+                        goldHover: '#c19e2e',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #005830;
+            border-radius: 4px;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(0, 88, 48, 0.95) 0%, rgba(15, 23, 42, 0.92) 100%),
+                        url('https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=1600') center/cover no-repeat;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- Top Info Bar -->
+    <div class="bg-emeraldDark text-slate-200 text-xs py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span><i class="fa-solid fa-phone text-goldCustom mr-1.5"></i> +92 300 3525404</span>
+                <span><i class="fa-solid fa-location-dot text-goldCustom mr-1.5"></i> Available across Pakistan (Islamabad, Lahore, Karachi & More)</span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="text-emerald-200 font-medium"><i class="fa-solid fa-shield-halved text-goldCustom mr-1"></i> Honest & Hardworking Service</span>
+                <button onclick="openAdminModal()" class="text-xs bg-goldCustom/20 hover:bg-goldCustom hover:text-slate-900 text-goldCustom px-2 py-0.5 rounded transition duration-200 font-semibold border border-goldCustom/30">
+                    <i class="fa-solid fa-sliders mr-1"></i> Admin Rates
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-xl bg-emeraldCustom flex items-center justify-center text-goldCustom shadow-md shadow-emeraldCustom/20 border border-goldCustom/30">
+                        <i class="fa-solid fa-car-side text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight block leading-none">
+                            QAZI <span class="text-emeraldCustom">RENT A CAR</span>
+                        </span>
+                        <span class="text-xs text-slate-500 font-medium tracking-wide uppercase">Reliable & Honest Rides</span>
+                    </div>
+                </a>
+
+                <!-- Nav Links Desktop -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-700">
+                    <a href="#fleet" class="hover:text-emeraldCustom transition">Our Fleet</a>
+                    <a href="#estimator" class="hover:text-emeraldCustom transition">Rate Calculator</a>
+                    <a href="#booking" class="hover:text-emeraldCustom transition">Book Trip</a>
+                    <a href="#why-us" class="hover:text-emeraldCustom transition">Why Choose Qazi</a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden sm:flex items-center space-x-3">
+                    <a href="https://wa.me/923003525404?text=Hello%20Qazi%20Rent%20a%20Car,%20I%20would%20like%20to%20inquire%20about%20booking%20a%20car." 
+                       target="_blank"
+                       class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl font-semibold shadow-md transition transform active:scale-95 text-sm">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>WhatsApp Now</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-700 hover:text-emeraldCustom focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Nav -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-6 space-y-3">
+            <a href="#fleet" class="block py-2 text-slate-700 font-medium hover:text-emeraldCustom">Our Fleet</a>
+            <a href="#estimator" class="block py-2 text-slate-700 font-medium hover:text-emeraldCustom">Rate Calculator</a>
+            <a href="#booking" class="block py-2 text-slate-700 font-medium hover:text-emeraldCustom">Book Trip</a>
+            <a href="#why-us" class="block py-2 text-slate-700 font-medium hover:text-emeraldCustom">Why Choose Qazi</a>
+            <a href="https://wa.me/923003525404" target="_blank" class="block text-center bg-emerald-600 text-white py-2.5 rounded-xl font-bold">
+                <i class="fa-brands fa-whatsapp mr-2"></i> WhatsApp Qazi Directly
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-16 md:py-24 px-4 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-8 items-center">
+            
+            <div class="md:col-span-7 space-y-6 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 bg-goldCustom/20 border border-goldCustom/40 px-3.5 py-1.5 rounded-full text-goldCustom text-xs sm:text-sm font-semibold uppercase tracking-wider">
+                    <i class="fa-solid fa-star"></i> Drive With Trust & Dedication
+                </div>
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                    Affordable, Hardworking & Premium Rentals by <span class="text-goldCustom">Qazi</span>
+                </h1>
+                <p class="text-slate-200 text-base sm:text-lg max-w-2xl font-light leading-relaxed">
+                    Whether you need a daily commute in town, an outstation family trip, or an airport drop, Qazi Rent a Car brings you clean, reliable Suzuki Cultus, Toyota Corolla, and Toyota Prius at fair, transparent rates.
+                </p>
+
+                <!-- Key Badges -->
+                <div class="grid grid-cols-3 gap-3 pt-2 max-w-lg mx-auto md:mx-0">
+                    <div class="bg-white/10 backdrop-blur-sm p-3 rounded-xl border border-white/10 text-center">
+                        <i class="fa-solid fa-car text-goldCustom text-xl mb-1"></i>
+                        <p class="text-xs font-semibold">Well Maintained</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm p-3 rounded-xl border border-white/10 text-center">
+                        <i class="fa-solid fa-handshake-simple text-goldCustom text-xl mb-1"></i>
+                        <p class="text-xs font-semibold">Honest Pricing</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm p-3 rounded-xl border border-white/10 text-center">
+                        <i class="fa-solid fa-clock text-goldCustom text-xl mb-1"></i>
+                        <p class="text-xs font-semibold">24/7 Availability</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
+                    <a href="#estimator" class="bg-goldCustom hover:bg-goldHover text-slate-900 font-bold px-7 py-3.5 rounded-xl shadow-lg transition duration-200 text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-calculator"></i> Calculate Trip Rate
+                    </a>
+                    <a href="#fleet" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-3.5 rounded-xl backdrop-blur-sm border border-white/30 transition duration-200 text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-car-side"></i> View Vehicles
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Quick Quote Card -->
+            <div class="md:col-span-5">
+                <div class="glass-card text-slate-900 p-6 sm:p-8 rounded-3xl shadow-2xl border border-white/40">
+                    <div class="flex items-center justify-between mb-4 border-b border-slate-200 pb-3">
+                        <h3 class="text-xl font-bold text-emeraldCustom flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-goldCustom"></i> Instant Quick Estimate
+                        </h3>
+                        <span class="text-xs bg-emerald-100 text-emerald-800 font-semibold px-2.5 py-1 rounded-full">Pakistani Rupee (PKR)</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Select Car</label>
+                            <select id="hero-car-select" onchange="syncCarSelect(this.value)" class="w-full bg-slate-100 border border-slate-300 rounded-xl px-4 py-2.5 font-semibold text-slate-800 focus:ring-2 focus:ring-emeraldCustom focus:outline-none">
+                                <option value="cultus">Suzuki Cultus (Economy)</option>
+                                <option value="corolla">Toyota Corolla (Executive)</option>
+                                <option value="prius">Toyota Prius (Hybrid Comfort)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Trip Duration (Days)</label>
+                            <input type="number" id="hero-days" value="1" min="1" max="30" onchange="syncDays(this.value)" class="w-full bg-slate-100 border border-slate-300 rounded-xl px-4 py-2.5 font-semibold text-slate-800 focus:ring-2 focus:ring-emeraldCustom focus:outline-none">
+                        </div>
+
+                        <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 flex justify-between items-center">
+                            <div>
+                                <p class="text-xs text-slate-500 font-medium">Estimated Rental Cost</p>
+                                <p class="text-2xl font-extrabold text-emeraldCustom" id="hero-price-display">Rs. 4,500</p>
+                            </div>
+                            <i class="fa-solid fa-receipt text-3xl text-emerald-300"></i>
+                        </div>
+
+                        <a href="#estimator" class="w-full bg-emeraldCustom hover:bg-emeraldDark text-white font-bold py-3 px-4 rounded-xl shadow transition duration-200 flex items-center justify-center gap-2 text-sm">
+                            Custom Rate Adjuster & Book <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Car Fleet Section -->
+    <section id="fleet" class="py-16 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-extrabold text-emeraldCustom uppercase tracking-widest bg-emerald-100 px-3 py-1 rounded-full">Our Trusted Vehicles</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">Select Your Ideal Ride</h2>
+                <p class="text-slate-600 mt-2">All cars are thoroughly inspected, AC verified, and driven by experienced, polite drivers or offered for transparent rentals.</p>
+            </div>
+
+            <!-- Fleet Cards Container -->
+            <div id="fleet-cards" class="grid md:grid-cols-3 gap-8">
+                <!-- Cars will be dynamically rendered or static hydrated via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Rate / Price Estimator & Trip Rate Adjuster Tool -->
+    <section id="estimator" class="py-16 bg-white border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-xs font-extrabold text-goldCustom bg-slate-900 px-3 py-1 rounded-full uppercase tracking-widest">
+                    <i class="fa-solid fa-sliders text-goldCustom mr-1"></i> Interactive Fare Calculator
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">Dynamic Trip Rate Adjuster</h2>
+                <p class="text-slate-600 mt-2">Calculate your estimated rental cost and adjust special discounts or custom rates directly in real time.</p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-xl max-w-5xl mx-auto">
+                <div class="grid md:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left Controls -->
+                    <div class="md:col-span-7 space-y-6">
+                        
+                        <!-- Step 1: Vehicle Selection -->
+                        <div>
+                            <label class="block text-xs font-extrabold text-slate-600 uppercase tracking-wider mb-2">1. Select Vehicle Model</label>
+                            <div class="grid grid-cols-3 gap-3" id="estimator-car-buttons">
+                                <button onclick="selectEstimatorCar('cultus')" id="btn-car-cultus" class="p-3 border-2 border-emeraldCustom bg-emerald-50 text-emeraldCustom rounded-2xl font-bold text-xs sm:text-sm text-center transition flex flex-col items-center gap-1 shadow-sm">
+                                    <i class="fa-solid fa-car"></i>
+                                    Suzuki Cultus
+                                </button>
+                                <button onclick="selectEstimatorCar('corolla')" id="btn-car-corolla" class="p-3 border-2 border-slate-200 bg-white text-slate-700 rounded-2xl font-bold text-xs sm:text-sm text-center transition flex flex-col items-center gap-1 hover:border-emeraldCustom">
+                                    <i class="fa-solid fa-car-side"></i>
+                                    Toyota Corolla
+                                </button>
+                                <button onclick="selectEstimatorCar('prius')" id="btn-car-prius" class="p-3 border-2 border-slate-200 bg-white text-slate-700 rounded-2xl font-bold text-xs sm:text-sm text-center transition flex flex-col items-center gap-1 hover:border-emeraldCustom">
+                                    <i class="fa-solid fa-leaf text-emerald-600"></i>
+                                    Toyota Prius
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Trip Type & Duration -->
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-extrabold text-slate-600 uppercase tracking-wider mb-2">Trip Type</label>
+                                <select id="trip-type" onchange="calculateFare()" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 font-semibold text-slate-800 focus:ring-2 focus:ring-emeraldCustom">
+                                    <option value="per_day">Daily Rental (Per Day)</option>
+                                    <option value="city_ride">City Day Ride (Within City)</option>
+                                    <option value="outstation">Outstation Trip (Long Route)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-extrabold text-slate-600 uppercase tracking-wider mb-2">Number of Days / Duration</label>
+                                <div class="flex items-center space-x-2">
+                                    <button onclick="adjustDays(-1)" class="w-10 h-10 bg-slate-200 rounded-xl font-bold text-slate-700 hover:bg-slate-300 text-lg">-</button>
+                                    <input type="number" id="calc-days" value="1" min="1" max="30" oninput="calculateFare()" class="w-full text-center bg-white border border-slate-300 rounded-xl py-2 font-bold text-slate-800 focus:ring-2 focus:ring-emeraldCustom">
+                                    <button onclick="adjustDays(1)" class="w-10 h-10 bg-slate-200 rounded-xl font-bold text-slate-700 hover:bg-slate-300 text-lg">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Fuel & Driver Options -->
+                        <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                            <div>
+                                <label class="block text-xs font-extrabold text-slate-600 uppercase tracking-wider mb-2">Fuel Option</label>
+                                <select id="fuel-option" onchange="calculateFare()" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 font-semibold text-slate-800 focus:ring-2 focus:ring-emeraldCustom">
+                                    <option value="ex_fuel">Excluding Fuel (Customer pays fuel)</option>
+                                    <option value="inc_fuel">Including Fuel (Estimated city limit)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-extrabold text-slate-600 uppercase tracking-wider mb-2">Driver Option</label>
+                                <select id="driver-option" onchange="calculateFare()" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 font-semibold text-slate-800 focus:ring-2 focus:ring-emeraldCustom">
+                                    <option value="with_driver">With Experienced Driver (+Rs. 1,000/day)</option>
+                                    <option value="self_drive">Self Drive (Subject to Verification)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Rate Adjuster Slider (For Qazi & Customers) -->
+                        <div class="bg-white border border-goldCustom/30 p-4 rounded-2xl shadow-sm">
+                            <div class="flex justify-between items-center mb-1">
+                                <label class="text-xs font-extrabold text-slate-700 uppercase flex items-center gap-1.5">
+                                    <i class="fa-solid fa-sliders text-goldCustom"></i> Dynamic Rate / Discount Adjuster
+                                </label>
+                                <span id="rate-adjustment-badge" class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Normal Rate</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-3">Qazi or Customer can adjust this slider to apply custom discount or surge adjustment (e.g., peak season or special agreement).</p>
+                            
+                            <input type="range" id="rate-adjust-slider" min="-30" max="30" value="0" step="5" oninput="calculateFare()" class="w-full accent-emeraldCustom cursor-pointer h-2 bg-slate-200 rounded-lg">
+                            <div class="flex justify-between text-xs font-bold text-slate-500 mt-1">
+                                <span>-30% (Discount)</span>
+                                <span id="slider-val-text" class="text-slate-800">0% Adjustment</span>
+                                <span>+30% (Surcharge)</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Summary Card -->
+                    <div class="md:col-span-5 bg-slate-900 text-white p-6 sm:p-8 rounded-3xl shadow-xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+                                <h4 class="text-lg font-bold text-goldCustom flex items-center gap-2">
+                                    <i class="fa-solid fa-file-invoice-dollar"></i> Estimated Breakdown
+                                </h4>
+                                <span class="text-xs bg-emeraldCustom/40 border border-emerald-500/30 text-emerald-300 font-semibold px-2.5 py-0.5 rounded-full" id="summary-car-name">
+                                    Suzuki Cultus
+                                </span>
+                            </div>
+
+                            <!-- Cost Breakdown -->
+                            <div class="space-y-3 text-sm">
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Base Rate (<span id="summary-days-count">1</span> day):</span>
+                                    <span class="font-bold text-white" id="summary-base-rate">Rs. 4,500</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Driver Fee:</span>
+                                    <span class="font-bold text-white" id="summary-driver-fee">Rs. 1,000</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Fuel Allowance:</span>
+                                    <span class="font-bold text-white" id="summary-fuel-fee">Rs. 0</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Custom Rate Adjustment:</span>
+                                    <span class="font-bold text-goldCustom" id="summary-adjustment-amount">Rs. 0</span>
+                                </div>
+                                
+                                <div class="border-t border-slate-800 my-2 pt-3 flex justify-between items-baseline">
+                                    <div>
+                                        <p class="text-xs text-slate-400 font-semibold uppercase">Total Estimated Fare</p>
+                                        <p class="text-xs text-emerald-400">No Hidden Charges</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-2xl sm:text-3xl font-extrabold text-goldCustom" id="summary-total-price">Rs. 5,500</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA Book Now button transferring data to Form & WhatsApp -->
+                        <div class="mt-6 space-y-3">
+                            <button onclick="transferToBookingForm()" class="w-full bg-emeraldCustom hover:bg-emeraldDark text-white font-bold py-3.5 px-4 rounded-xl shadow-lg transition duration-200 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-calendar-check"></i> Proceed to Book This Trip
+                            </button>
+                            <p class="text-xs text-center text-slate-400">
+                                <i class="fa-solid fa-shield-halved text-goldCustom mr-1"></i> Special long term discount? Qazi can adjust the price anytime.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking / Inquiry Form Section -->
+    <section id="booking" class="py-16 bg-slate-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="text-xs font-extrabold text-emeraldCustom bg-emerald-100 px-3 py-1 rounded-full uppercase">Fast & Simple Booking</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Book Your Trip With Qazi</h2>
+                <p class="text-slate-600">Fill in your travel details below to send an instant pre-formatted WhatsApp booking message to Qazi.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-slate-200">
+                <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="space-y-6">
+                    
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Customer Full Name *</label>
+                            <input type="text" id="cust-name" required placeholder="e.g. Ali Khan" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 font-semibold text-slate-800 focus:ring-2 focus:ring-emeraldCustom focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Mobile / WhatsApp Number *</label>
+                            <input type="tel" id="cust-phone" required placeholder="0300 1234567" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 font-semibold text-slate-800 focus:ring-2 focus:ring-emeraldCustom focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Pickup Location (City / Address) *</label>
+                            <input type="text" id="pickup-location" required placeholder="e.g. F-7 Islamabad / Lahore Airport" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 font-semibold text-slate-800 focus:ring-2 focus:ring-emeraldCustom focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Drop-off / Destination *</label>
+                            <input type="text" id="drop-location" required placeholder="e.g. Murree / Local City Ride" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 font-semibold text-slate-800 focus:ring-2 focus:ring-emeraldCustom focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Pickup Date & Time *</label>
+                            <input type="datetime-local" id="pickup-datetime" required class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 font-semibold text-slate-800 focus:ring-2 focus:ring-emeraldCustom focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Selected Vehicle</label>
+                            <input type="text" id="booking-selected-car" readonly class="w-full bg-slate-200 border border-slate-300 rounded-xl px-4 py-3 font-bold text-emeraldCustom cursor-not-allowed">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Special Instructions / Trip Notes (Optional)</label>
+                        <textarea id="trip-notes" rows="3" placeholder="Need baby seat, luggage space, specific luggage count, etc." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 font-semibold text-slate-800 focus:ring-2 focus:ring-emeraldCustom focus:outline-none"></textarea>
+                    </div>
+
+                    <!-- Final Fare Summary Banner -->
+                    <div class="bg-emerald-900 text-white rounded-2xl p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <div>
+                            <p class="text-xs text-emerald-200 font-medium">Estimated Calculated Total:</p>
+                            <p class="text-2xl font-extrabold text-goldCustom" id="form-summary-fare">Rs. 5,500</p>
+                        </div>
+                        <button type="submit" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold px-8 py-3.5 rounded-xl shadow-lg transition duration-200 flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> Book via WhatsApp Now
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Qazi Section -->
+    <section id="why-us" class="py-16 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-extrabold text-goldCustom bg-slate-900 px-3 py-1 rounded-full uppercase">Why Choose Qazi</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-3">Built on Hard Work, Honesty & Respect</h2>
+                <p class="text-slate-600 mt-2">Qazi takes personal care of every trip to ensure comfort, safety, and puncture-free smooth journeys for your family and guests.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emeraldCustom flex items-center justify-center text-2xl font-bold mb-4">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Fair & Negotiable Rates</h3>
+                    <p class="text-slate-600 text-sm">No hidden fuel traps or unexpected driver charges. Everything is agreed upon clearly before you step inside the car.</p>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-xl bg-goldCustom/20 text-slate-900 flex items-center justify-center text-2xl font-bold mb-4">
+                        <i class="fa-solid fa-car-on"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Maintained Fleet</h3>
+                    <p class="text-slate-600 text-sm">All Suzuki Cultus, Toyota Corolla, and Toyota Prius models are serviced regularly with cold air conditioning and clean seats.</p>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emeraldCustom flex items-center justify-center text-2xl font-bold mb-4">
+                        <i class="fa-solid fa-route"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Local Route Mastery</h3>
+                    <p class="text-slate-600 text-sm">Experienced on both urban highways and long outstation trips across Punjab, KPK, Sindh, and Northern Areas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-emeraldCustom flex items-center justify-center text-goldCustom">
+                            <i class="fa-solid fa-car-side text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">Qazi Rent a Car</span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Dedicated rent-a-car service in Pakistan committed to honest hard work, reliable rides, and customer satisfaction.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-extrabold text-white uppercase tracking-wider mb-4">Car Models</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#fleet" onclick="selectEstimatorCar('cultus')" class="hover:text-goldCustom">Suzuki Cultus (Economy)</a></li>
+                        <li><a href="#fleet" onclick="selectEstimatorCar('corolla')" class="hover:text-goldCustom">Toyota Corolla (Executive)</a></li>
+                        <li><a href="#fleet" onclick="selectEstimatorCar('prius')" class="hover:text-goldCustom">Toyota Prius (Hybrid)</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-extrabold text-white uppercase tracking-wider mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#estimator" class="hover:text-goldCustom">Rate Calculator</a></li>
+                        <li><a href="#booking" class="hover:text-goldCustom">Book Ride</a></li>
+                        <li><button onclick="openAdminModal()" class="text-goldCustom hover:underline">Qazi Rates Control Panel</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-extrabold text-white uppercase tracking-wider mb-4">Contact Qazi</h4>
+                    <p class="text-sm text-slate-300 mb-2"><i class="fa-solid fa-phone text-goldCustom mr-2"></i> +92 300 1234567</p>
+                    <p class="text-sm text-slate-300 mb-2"><i class="fa-brands fa-whatsapp text-emerald-400 mr-2"></i> +92 300 1234567</p>
+                    <p class="text-sm text-slate-300"><i class="fa-solid fa-location-dot text-goldCustom mr-2"></i> Pakistan</p>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs">
+                <p>&copy; <span id="current-year"></span> Qazi Rent a Car Pakistan. All rights reserved.</p>
+                <p class="mt-2 sm:mt-0 text-slate-500">Honest Work & Honest Earn.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin / Rates Quick Adjuster Modal -->
+    <div id="admin-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative animate-fade-in">
+            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
+                &times;
+            </button>
+
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-goldCustom/20 text-goldCustom flex items-center justify-center font-bold text-xl">
+                    <i class="fa-solid fa-user-gear text-slate-900"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900">Qazi's Admin Base Rate Adjuster</h3>
+                    <p class="text-xs text-slate-500">Update standard base per-day rates. Changes save immediately locally.</p>
+                </div>
+            </div>
+
+            <form onsubmit="saveAdminRates(event)" class="space-y-4 pt-2">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Suzuki Cultus Base Rate (PKR / Day)</label>
+                    <input type="number" id="admin-rate-cultus" required class="w-full bg-slate-100 border border-slate-300 rounded-xl px-4 py-2.5 font-bold text-slate-800">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Toyota Corolla Base Rate (PKR / Day)</label>
+                    <input type="number" id="admin-rate-corolla" required class="w-full bg-slate-100 border border-slate-300 rounded-xl px-4 py-2.5 font-bold text-slate-800">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Toyota Prius Base Rate (PKR / Day)</label>
+                    <input type="number" id="admin-rate-prius" required class="w-full bg-slate-100 border border-slate-300 rounded-xl px-4 py-2.5 font-bold text-slate-800">
+                </div>
+
+                <div class="pt-3 flex gap-3">
+                    <button type="button" onclick="resetDefaultRates()" class="w-1/3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold py-2.5 px-3 rounded-xl text-xs transition">
+                        Reset Defaults
+                    </button>
+                    <button type="submit" class="w-2/3 bg-emeraldCustom hover:bg-emeraldDark text-white font-bold py-2.5 px-4 rounded-xl shadow transition text-sm">
+                        Save Base Rates
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 transition-all duration-300 transform translate-y-20 opacity-0 z-50">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-xl" id="toast-icon"></i>
+        <span text-xs font-medium id="toast-message">Notification message</span>
+    </div>
+
+    <!-- Application Script -->
+    <script>
+        // Default Base Rates in PKR
+        const DEFAULT_RATES = {
+            cultus: 4500,
+            corolla: 7000,
+            prius: 9500
+        };
+
+        // Car Fleet Specs Database
+        const FLEET_DATA = {
+            cultus: {
+                id: 'cultus',
+                name: 'Suzuki Cultus',
+                tag: 'Economy & Fuel Efficient',
+                image: 'Suzuki_Cultus_-_PNG.jfif',
+                seats: '4 Passengers',
+                fuel: 'Petrol (High Average)',
+                transmission: 'Manual / VXL',
+                features: ['Chilling AC', 'Clean Interior', 'Ideal for City Rides', 'Compact & Agile'],
+                description: 'Perfect for economical city travel, family errands, and budget-friendly daily rentals with minimal fuel consumption.'
+            },
+            corolla: {
+                id: 'corolla',
+                name: 'Toyota Corolla',
+                tag: 'Executive Comfort & Smooth Drive',
+                image: 'images.jfif',
+                seats: '5 Passengers',
+                fuel: 'Petrol',
+                transmission: 'Automatic / GLi/Altis',
+                features: ['Dual AC', 'Spacious Trunk', 'High Ground Clearance', 'Smooth Outstation Ride'],
+                description: 'The standard of reliability in Pakistan. High comfort for long routes, family events, wedding travel, and outstation trips.'
+            },
+            prius: {
+                id: 'prius',
+                name: 'Toyota Prius',
+                tag: 'Hybrid Eco Comfort',
+                image: 'Toyota Prius - Goodbye Report.jpg',
+                seats: '5 Passengers',
+                fuel: 'Hybrid (Super Quiet)',
+                transmission: 'Automatic CVT',
+                features: ['Silent Electric Engine', 'Premium Luxury Interior', 'Climate Control AC', 'Ultra Smooth Ride'],
+                description: 'Top tier hybrid comfort for clients seeking smooth, silent, and eco-friendly premium rides across town or long drives.'
+            }
+        };
+
+        // State Management
+        let currentCar = 'cultus';
+        let currentRates = { ...DEFAULT_RATES };
+
+        // Initialize App
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            loadRatesFromStorage();
+            renderFleetCards();
+            calculateFare();
+
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            if (menuBtn && menu) {
+                menuBtn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                });
+            }
+        });
+
+        // Load rates from LocalStorage
+        function loadRatesFromStorage() {
+            const saved = localStorage.getItem('qazi_rent_rates');
+            if (saved) {
+                try {
+                    currentRates = JSON.parse(saved);
+                } catch (e) {
+                    currentRates = { ...DEFAULT_RATES };
+                }
+            } else {
+                currentRates = { ...DEFAULT_RATES };
+            }
+        }
+
+        // Render Car Fleet Cards
+        function renderFleetCards() {
+            const container = document.getElementById('fleet-cards');
+            if (!container) return;
+
+            container.innerHTML = Object.values(FLEET_DATA).map(car => {
+                const basePrice = currentRates[car.id];
+                return `
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-200 flex flex-col justify-between transform transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
+                        <div>
+                            <div class="relative h-48 overflow-hidden bg-slate-900">
+                                <img src="${car.image}" alt="${car.name}" class="w-full h-full object-cover opacity-90 hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/800x500/005830/ffffff?text=${encodeURIComponent(car.name)}'">
+                                <div class="absolute top-3 right-3 bg-emeraldCustom text-goldCustom text-xs font-bold px-3 py-1 rounded-full shadow">
+                                    ${car.tag}
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-2xl font-extrabold text-slate-900">${car.name}</h3>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-4">${car.description}</p>
+
+                                <div class="grid grid-cols-2 gap-2 text-xs text-slate-700 bg-slate-50 p-3 rounded-2xl mb-4 border border-slate-100">
+                                    <div class="flex items-center gap-2"><i class="fa-solid fa-users text-emeraldCustom"></i> ${car.seats}</div>
+                                    <div class="flex items-center gap-2"><i class="fa-solid fa-gas-pump text-emeraldCustom"></i> ${car.fuel}</div>
+                                    <div class="flex items-center gap-2"><i class="fa-solid fa-gear text-emeraldCustom"></i> ${car.transmission}</div>
+                                    <div class="flex items-center gap-2"><i class="fa-solid fa-snowflake text-emeraldCustom"></i> Chilling AC</div>
+                                </div>
+
+                                <div class="space-y-1 mb-4">
+                                    ${car.features.map(f => `
+                                        <div class="text-xs text-slate-600 flex items-center gap-1.5">
+                                            <i class="fa-solid fa-check text-emerald-600"></i> ${f}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 pt-0 border-t border-slate-100 flex items-center justify-between mt-auto">
+                            <div>
+                                <span class="text-xs text-slate-400 block font-medium">Standard Base</span>
+                                <span class="text-xl font-extrabold text-emeraldCustom">Rs. ${basePrice.toLocaleString()}</span>
+                                <span class="text-xs text-slate-500">/ day</span>
+                            </div>
+                            <button onclick="selectCarAndScroll('${car.id}')" class="bg-slate-900 hover:bg-emeraldCustom text-white text-xs font-bold px-4 py-2.5 rounded-xl transition flex items-center gap-1">
+                                Calc Rate <i class="fa-solid fa-arrow-right text-goldCustom ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Selection & Sync functions
+        function selectCarAndScroll(carId) {
+            selectEstimatorCar(carId);
+            const estElem = document.getElementById('estimator');
+            if (estElem) estElem.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectEstimatorCar(carId) {
+            currentCar = carId;
+            // Update button styles
+            ['cultus', 'corolla', 'prius'].forEach(id => {
+                const btn = document.getElementById(`btn-car-${id}`);
+                if (btn) {
+                    if (id === carId) {
+                        btn.className = "p-3 border-2 border-emeraldCustom bg-emerald-50 text-emeraldCustom rounded-2xl font-bold text-xs sm:text-sm text-center transition flex flex-col items-center gap-1 shadow-sm";
+                    } else {
+                        btn.className = "p-3 border-2 border-slate-200 bg-white text-slate-700 rounded-2xl font-bold text-xs sm:text-sm text-center transition flex flex-col items-center gap-1 hover:border-emeraldCustom";
+                    }
+                }
+            });
+
+            // Sync hero dropdown
+            const heroSel = document.getElementById('hero-car-select');
+            if (heroSel) heroSel.value = carId;
+
+            calculateFare();
+        }
+
+        function syncCarSelect(carId) {
+            selectEstimatorCar(carId);
+        }
+
+        function syncDays(val) {
+            const calcDaysInput = document.getElementById('calc-days');
+            if (calcDaysInput) calcDaysInput.value = Math.max(1, parseInt(val) || 1);
+            calculateFare();
+        }
+
+        function adjustDays(delta) {
+            const calcDaysInput = document.getElementById('calc-days');
+            if (!calcDaysInput) return;
+            let current = parseInt(calcDaysInput.value) || 1;
+            current = Math.max(1, current + delta);
+            calcDaysInput.value = current;
+            
+            const heroDays = document.getElementById('hero-days');
+            if (heroDays) heroDays.value = current;
+
+            calculateFare();
+        }
+
+        // Calculate Fare Engine
+        function calculateFare() {
+            const carData = FLEET_DATA[currentCar];
+            const baseRatePerDay = currentRates[currentCar] || 4500;
+
+            const daysInput = document.getElementById('calc-days');
+            const days = parseInt(daysInput ? daysInput.value : 1) || 1;
+
+            const driverOption = document.getElementById('driver-option')?.value || 'with_driver';
+            const fuelOption = document.getElementById('fuel-option')?.value || 'ex_fuel';
+            const tripType = document.getElementById('trip-type')?.value || 'per_day';
+            
+            const slider = document.getElementById('rate-adjust-slider');
+            const adjustmentPct = parseInt(slider ? slider.value : 0) || 0;
+
+            // Driver fee: Rs. 1000 per day if driver selected
+            const driverFeePerDay = (driverOption === 'with_driver') ? 1000 : 0;
+            const totalDriverFee = driverFeePerDay * days;
+
+            // Fuel allowance estimation (if including fuel)
+            let fuelFeePerDay = 0;
+            if (fuelOption === 'inc_fuel') {
+                fuelFeePerDay = (currentCar === 'prius') ? 2500 : (currentCar === 'cultus' ? 2000 : 3000);
+            }
+            const totalFuelFee = fuelFeePerDay * days;
+
+            // Trip type multiplier
+            let tripMultiplier = 1.0;
+            if (tripType === 'outstation') tripMultiplier = 1.15; // slightly higher for long route wear & tear
+
+            const rawBaseTotal = Math.round(baseRatePerDay * days * tripMultiplier);
+            
+            // Apply Slider adjustment percentage
+            const adjustmentAmount = Math.round(rawBaseTotal * (adjustmentPct / 100));
+            const finalTotal = Math.max(1000, rawBaseTotal + adjustmentAmount + totalDriverFee + totalFuelFee);
+
+            // Update Dynamic UI
+            updateUI(carData, days, rawBaseTotal, totalDriverFee, totalFuelFee, adjustmentAmount, adjustmentPct, finalTotal);
+        }
+
+        function updateUI(carData, days, rawBaseTotal, totalDriverFee, totalFuelFee, adjustmentAmount, adjustmentPct, finalTotal) {
+            // Slider badge
+            const sliderValText = document.getElementById('slider-val-text');
+            const badge = document.getElementById('rate-adjustment-badge');
+            if (sliderValText && badge) {
+                if (adjustmentPct < 0) {
+                    sliderValText.textContent = `${adjustmentPct}% Discount`;
+                    badge.textContent = `Discount Applied (${adjustmentPct}%)`;
+                    badge.className = "text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800";
+                } else if (adjustmentPct > 0) {
+                    sliderValText.textContent = `+${adjustmentPct}% Surge`;
+                    badge.textContent = `Surge Adjustment (+${adjustmentPct}%)`;
+                    badge.className = "text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800";
+                } else {
+                    sliderValText.textContent = "0% Adjustment";
+                    badge.textContent = "Standard Rate";
+                    badge.className = "text-xs font-bold px-2 py-0.5 rounded bg-slate-200 text-slate-800";
+                }
+            }
+
+            // Summary Breakdown elements
+            document.getElementById('summary-car-name').textContent = carData.name;
+            document.getElementById('summary-days-count').textContent = days;
+            document.getElementById('summary-base-rate').textContent = `Rs. ${rawBaseTotal.toLocaleString()}`;
+            document.getElementById('summary-driver-fee').textContent = `Rs. ${totalDriverFee.toLocaleString()}`;
+            document.getElementById('summary-fuel-fee').textContent = `Rs. ${totalFuelFee.toLocaleString()}`;
+            
+            const adjElem = document.getElementById('summary-adjustment-amount');
+            if (adjElem) {
+                adjElem.textContent = (adjustmentAmount >= 0 ? `+Rs. ${adjustmentAmount.toLocaleString()}` : `-Rs. ${Math.abs(adjustmentAmount).toLocaleString()}`);
+            }
+
+            const totalFormatted = `Rs. ${finalTotal.toLocaleString()}`;
+            document.getElementById('summary-total-price').textContent = totalFormatted;
+            document.getElementById('hero-price-display').textContent = totalFormatted;
+            document.getElementById('form-summary-fare').textContent = totalFormatted;
+
+            // Form preset input
+            const carInput = document.getElementById('booking-selected-car');
+            if (carInput) {
+                carInput.value = `${carData.name} (${days} Day${days > 1 ? 's' : ''}) - Estimated: ${totalFormatted}`;
+            }
+        }
+
+        // Scroll to booking form with selected details
+        function transferToBookingForm() {
+            const formElem = document.getElementById('booking');
+            if (formElem) {
+                formElem.scrollIntoView({ behavior: 'smooth' });
+                showToast("Trip details loaded into booking form!");
+            }
+        }
+
+        // Handle Booking WhatsApp Message Generation
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const pickup = document.getElementById('pickup-location').value;
+            const drop = document.getElementById('drop-location').value;
+            const datetime = document.getElementById('pickup-datetime').value;
+            const notes = document.getElementById('trip-notes').value || 'None';
+            const carDetails = document.getElementById('booking-selected-car').value;
+            const totalFare = document.getElementById('form-summary-fare').textContent;
+
+            // Pre-formatted WhatsApp Message
+            const message = `*NEW BOOKING INQUIRY - QAZI RENT A CAR*%0A%0A` +
+                `*Customer Name:* ${encodeURIComponent(name)}%0A` +
+                `*Contact:* ${encodeURIComponent(phone)}%0A` +
+                `*Vehicle Selection:* ${encodeURIComponent(carDetails)}%0A` +
+                `*Pickup Location:* ${encodeURIComponent(pickup)}%0A` +
+                `*Drop-off Location:* ${encodeURIComponent(drop)}%0A` +
+                `*Date & Time:* ${encodeURIComponent(datetime)}%0A` +
+                `*Notes:* ${encodeURIComponent(notes)}%0A` +
+                `*Calculated Estimated Fare:* ${encodeURIComponent(totalFare)}%0A%0A` +
+                `Hello Qazi, please confirm car availability for this trip. Thank you!`;
+
+            const whatsappNumber = "923001234567"; // Qazi's phone number
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+            window.open(whatsappUrl, '_blank');
+            showToast("Redirecting to WhatsApp to send trip request...");
+        }
+
+        // Admin Modal Logic
+        function openAdminModal() {
+            document.getElementById('admin-rate-cultus').value = currentRates.cultus;
+            document.getElementById('admin-rate-corolla').value = currentRates.corolla;
+            document.getElementById('admin-rate-prius').value = currentRates.prius;
+            
+            document.getElementById('admin-modal').classList.remove('hidden');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+
+        function saveAdminRates(e) {
+            e.preventDefault();
+            const newCultus = parseInt(document.getElementById('admin-rate-cultus').value) || DEFAULT_RATES.cultus;
+            const newCorolla = parseInt(document.getElementById('admin-rate-corolla').value) || DEFAULT_RATES.corolla;
+            const newPrius = parseInt(document.getElementById('admin-rate-prius').value) || DEFAULT_RATES.prius;
+
+            currentRates = {
+                cultus: newCultus,
+                corolla: newCorolla,
+                prius: newPrius
+            };
+
+            localStorage.setItem('qazi_rent_rates', JSON.stringify(currentRates));
+            renderFleetCards();
+            calculateFare();
+            closeAdminModal();
+            showToast("Base rates updated and saved successfully!");
+        }
+
+        function resetDefaultRates() {
+            currentRates = { ...DEFAULT_RATES };
+            document.getElementById('admin-rate-cultus').value = DEFAULT_RATES.cultus;
+            document.getElementById('admin-rate-corolla').value = DEFAULT_RATES.corolla;
+            document.getElementById('admin-rate-prius').value = DEFAULT_RATES.prius;
+            localStorage.removeItem('qazi_rent_rates');
+            renderFleetCards();
+            calculateFare();
+            showToast("Rates reset to default PKR values.");
+        }
+
+        // Toast Helper
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const msgElem = document.getElementById('toast-message');
+            if (!toast || !msgElem) return;
+
+            msgElem.textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
